@@ -11,9 +11,12 @@ const app = express();
  * e o segundo é a resposta.
  * O return dessa função é sempre uma resposta. Temos várias formas de retornar
  * uma resposta. Porém a mais comum no início é o send().
+ * 
+ * O request guarda as informações da requisição que o usuário está fazendo. Por exemplo
+ * quais são as rotas ou parâmetros.
  */
-app.get('/projects', (request, response) => {
-  return response.send('Hello World');
+app.get('/', (request, response) => {
+  return response.json({"message":"Hello World"});
 });
 
 /**

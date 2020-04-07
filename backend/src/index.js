@@ -13,6 +13,8 @@ const app = express();
  * PUT/PATCH -> Quando queremos alterar alguma informação no back-end
  *  (PUT -> Atualização de algum recurso por completo)
  *  (PATCH -> Quando queremos atualizar alguma informação específica)
+ * 
+ * DELETE -> Quando queremos deletar alguma informação no back-end.
  */
 
 /**

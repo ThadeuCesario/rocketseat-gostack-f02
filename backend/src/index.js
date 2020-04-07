@@ -16,11 +16,16 @@ const app = express();
  * quais são as rotas ou parâmetros.
  */
 app.get('/', (request, response) => {
-  return response.json({"message":"Hello World"});
+  return response.json({"message":"Hello GoStack"});
 });
 
 /**
  * Com o App.listen, a aplicação estará em uma porta na qual podemos
  * acessar pelo localhost. Neste caso estará disponível na porta 3333.
+ * 
+ * Podemos ter como segundo parâmetro uma função que será acionada quando
+ * o servidor for executado.
  */
-app.listen(3333); 
+app.listen(3333, () => {
+  console.log('👾️ Back-end started! 🤖️')
+}); 

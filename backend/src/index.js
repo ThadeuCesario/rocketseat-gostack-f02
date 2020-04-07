@@ -3,6 +3,19 @@ const express = require('express');
 const app = express();
 
 /**
+ * Métodos HTTP:
+ * GET -> Utilizado quando queremos buscar informações do back-end.
+ * Ou seja quando estamos criando uma rota, com o intuito de retornar
+ * alguma informação para o usuário, utilizamos o método GET.
+ * 
+ * POST -> Quando queremos criar alguma informação no back-end.
+ * 
+ * PUT/PATCH -> Quando queremos alterar alguma informação no back-end
+ *  (PUT -> Atualização de algum recurso por completo)
+ *  (PATCH -> Quando queremos atualizar alguma informação específica)
+ */
+
+/**
  * Temos abaixo o método GET, lembrando que com o Express podemos controlar rotas.
  * Para isso vamos utilizar o método 'get' do express. No primeiro parâmetro
  * temos a rota que estaremos trabalhando que no caso é a '/project'.

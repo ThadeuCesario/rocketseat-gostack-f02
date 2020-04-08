@@ -66,7 +66,42 @@ app.use(express.json());
   * request body. Essas informações chegam através de JSON.
   */
 
+  /**
+   * Middleware:
+   * Interceptador de requisições.
+   * Podendo interromper totalmente uma requisição ou alterar dados da requisição.
+   * O middleware agirá enquanto nossas requisições estão chegando e pode agir
+   * antes que a resposta seja retornada para o usuário.
+   * 
+   * Vamos utilizar um middleware quando queremos que um trecho de código seja 
+   * disparado em uma ou mais rotas de nossa aplicação.
+   */
+
 const projects = [];
+
+function logRequests(request, response, next){
+  /**
+   * Esse middleware será disparado por todas as requisições para informar
+   * a rota que está sendo utilizada.
+   */
+
+  const {method, url} = request;
+  const logLabel = `[${method.toUpperCase()}] ${url}`;
+  console.log(logLabel);
+
+  /**
+   * Precisamos chamar o 'next()', caso contrário o proximo middleware
+   * não será disparado. 
+   */ 
+  return next(); 
+}  
+
+function middlewareTest(request, response, next){
+  console.log('Middleware teste somente para POST');
+  return next();
+}
+
+app.use(logRequests);
 
 app.get('/projects', (request, response) => {
   /**
@@ -78,7 +113,7 @@ app.get('/projects', (request, response) => {
   return response.json(results);
 });
 
-app.post('/projects', (request, response) =>{
+app.post('/projects', middlewareTest, (request, response) =>{
   /**
    * Para obtermos os dados do corpo da requisição basta:
    *   const body = request.body;

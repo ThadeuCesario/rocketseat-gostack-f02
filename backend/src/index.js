@@ -29,10 +29,60 @@ const app = express();
  * 
  * O request guarda as informações da requisição que o usuário está fazendo. Por exemplo
  * quais são as rotas ou parâmetros.
+ * 
+ * Geralmente chamamos o caminho que vem logo após a barra de recurso. No caso o 'projects'
+ * então o recurso é o projects.
+ * As rotas devem ser únicas, mas tanto a ação quando o recurso. Isso quer dizer que
+ * eu posso ter uma rota para 'POST' com o recurso 'projects' e uma rota para
+ * 'GET' com o recurso 'projects' também.
+ * 
+ * Lembrando que pelo navegador não temos como acessar rotas do tipo:
+ * POST, PUT ou DELETE
+ * Por isso utilizaremos o Insomnia
  */
-app.get('/', (request, response) => {
-  return response.json({"message":"Hello GoStack"});
+app.get('/projects', (request, response) => {
+  return response.json([
+    'Projeto 1',
+    'Projeto 2'
+  ]);
 });
+
+app.post('/projects', (request, response) =>{
+  return response.json([
+    'Projeto 1',
+    'Projeto 2',
+    'Projeto 3'
+  ]);
+});
+
+/**
+ * O método PUT é um pouco diferente. Por que o PUT, queremos atualizar o dado
+ * de algum elemento em específico. Por isso, precisaremos passar algum identificador
+ * único.
+ * Isso quer dizer que toda vez que for identificado o método put para essa rota
+ * será validado o id. Nossa rota seguirá +- o padrão abaixo:
+ * http://localhost:3333/projects/2
+ * No nosso caso o id é o número '2'.
+ */
+
+app.put('/projects/:id', (request, response) => {
+  return response.json([
+    'Projeto 4',
+    'Projeto 2',
+    'Projeto 3'
+  ]);
+});
+
+/**
+ * No caso do 'DELETE' o procedimento é o mesmo. Devemos excluir passando
+ * um 'id' como parâmetro.
+ */
+app.delete('/projects/:id', (request, response) => {
+  return([
+    'Projeto 2',
+    'Projeto 3'
+  ]);
+})
 
 /**
  * Com o App.listen, a aplicação estará em uma porta na qual podemos
@@ -42,5 +92,5 @@ app.get('/', (request, response) => {
  * o servidor for executado.
  */
 app.listen(3333, () => {
-  console.log('👾️ Back-end started! 🤖️')
+  console.log('👾️  Back-end started! 🤖️')
 }); 

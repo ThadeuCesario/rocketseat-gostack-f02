@@ -78,7 +78,7 @@ app.put('/projects/:id', (request, response) => {
  * um 'id' como parâmetro.
  */
 app.delete('/projects/:id', (request, response) => {
-  return([
+  return response.json([
     'Projeto 2',
     'Projeto 3'
   ]);

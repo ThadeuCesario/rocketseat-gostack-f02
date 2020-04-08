@@ -1,5 +1,5 @@
 const express = require('express');
-const {uuid} = require('uuidv4'); //Responsável por criar um id único universal.
+const {uuid, isUuid} = require('uuidv4'); //Responsável por criar um id único universal.
 const app = express();
 
 /**
@@ -87,13 +87,17 @@ function logRequests(request, response, next){
 
   const {method, url} = request;
   const logLabel = `[${method.toUpperCase()}] ${url}`;
-  console.log(logLabel);
-
+  // console.log(logLabel);
+  console.log('1');
+  console.time(logLabel);
   /**
    * Precisamos chamar o 'next()', caso contrário o proximo middleware
    * não será disparado. 
    */ 
-  return next(); 
+  next(); 
+
+  console.log('2');
+  console.timeEnd(logLabel);
 }  
 
 function middlewareTest(request, response, next){
@@ -101,10 +105,24 @@ function middlewareTest(request, response, next){
   return next();
 }
 
+function validateProjectId(request, response, next){
+  /**
+   * Esse middleware será responsável por validar se o 'id' passado na rota
+   * de alteração e na rota para exlusão está válido. Utilizando o 'isUuid'
+   */
+  const {id} = request.params;
+  if(!isUuid(id)){
+    return response.status(400).json({error: 'Invalid Project ID.'})
+  }
+  return next();
+}
+
 app.use(logRequests);
+app.use('/projects/:id', validateProjectId);
 
 app.get('/projects', (request, response) => {
-  /**
+  console.log('3');
+   /**
    * Tudo o que está dentro do request.query estão sendo enviados.
    */
   const {title} = request.query;

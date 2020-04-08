@@ -3,6 +3,12 @@ const express = require('express');
 const app = express();
 
 /**
+ * O 'use' é quando queremos adicionar uma função em que todas as rotas deverão
+ * passar por ela. Essa configuração precisa vir antes das rotas.
+ */
+
+app.use(express.json());
+/**
  * Métodos HTTP:
  * GET -> Utilizado quando queremos buscar informações do back-end.
  * Ou seja quando estamos criando uma rota, com o intuito de retornar
@@ -40,7 +46,33 @@ const app = express();
  * POST, PUT ou DELETE
  * Por isso utilizaremos o Insomnia
  */
+
+ /**
+  * Tipos de parâmetros (parâmetros são formas do nosso cliente enviar algum tipo de
+  * informação):
+  * 
+  * Query Params: Vamos utilizar principalmente para filtros e paginação. 
+  *      exemplo: http://localhost:3333/projects/?title=React
+  * Podemos anexar mais queries com '&'
+  *     exemplo: http://localhost:3333/projects/?title=React&owner=Thadeu
+  * O próprio insomnia possui uma funcionalidade para trabalhar com query params.
+  * 
+  * Route Params: Utilizaremos para identificar recursos (Atualizar ou deletar).
+  *     exemplo: http://localhost:3333/projects/:id
+  * 
+  * Request Body: Conteúdo na hora de criar ou editar um recurso.
+  * Imagine que no front end temos um formulários com uma série de informações.
+  * Essas informações na hora de criar/deletar/alterar, pegaremos através do
+  * request body. Essas informações chegam através de JSON.
+  */
 app.get('/projects', (request, response) => {
+  /**
+   * Tudo o que está dentro do request.query estão sendo enviados.
+   */
+  const {title, owner} = request.query;
+  console.log(title);
+  console.log(owner);
+
   return response.json([
     'Projeto 1',
     'Projeto 2'
@@ -48,6 +80,19 @@ app.get('/projects', (request, response) => {
 });
 
 app.post('/projects', (request, response) =>{
+  /**
+   * Para obtermos os dados do corpo da requisição basta:
+   *   const body = request.body;
+   *   console.log(body);
+   * Mas cuidado, por padrão o express não interpreta as informações através de Json.
+   * Para que o express possa retornar json, utilizamos: 
+   * app.use(express.json());
+   */
+
+  const {title, owner} = request.body;
+  console.log(title);
+  console.log(owner);
+
   return response.json([
     'Projeto 1',
     'Projeto 2',
@@ -66,6 +111,14 @@ app.post('/projects', (request, response) =>{
  */
 
 app.put('/projects/:id', (request, response) => {
+  /**
+   * Para obter o 'id' dentro do terminal, basta utilizar o 
+   * request.params
+   */
+
+  const {id} = request.params;
+  console.log(id);
+
   return response.json([
     'Projeto 4',
     'Projeto 2',

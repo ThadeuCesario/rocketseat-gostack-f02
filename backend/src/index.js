@@ -118,7 +118,7 @@ function validateProjectId(request, response, next){
 }
 
 app.use(logRequests);
-app.use('/projects/:id', validateProjectId);
+app.use('/projects/:id', validateProjectId); 
 
 app.get('/projects', (request, response) => {
   console.log('3');

@@ -16,6 +16,16 @@
  *    <React.Fragment></React.Fragment>
  *                   OU
  *                  <></>
+ * 
+ * Os três conceitos mais importantes do React são:
+ *  - Componentes
+ *  - Propriedade
+ *  - Estado
+ * 
+ * * Propriedade é alguma informação que podemos passar de um componente pai, para um componente filho.
+ *    props -> Todas as propriedades que são passadas como parâmetro
+ *    children -> Todo o conteúdo que nossa tag recebeu. Toda vez que acessarmos props.children, queremos exibir o conteúdo
+ *                que está dentro de nosso componente.
  */
 
 import React from 'react';

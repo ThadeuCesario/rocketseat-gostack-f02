@@ -6,7 +6,6 @@ export default function Header(props, children){
       <h1>
         {props.title}
       </h1>
-      {props.children}
     </header>
   )
 };

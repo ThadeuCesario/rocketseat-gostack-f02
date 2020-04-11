@@ -20,12 +20,14 @@
  * Os três conceitos mais importantes do React são:
  *  - Componentes
  *  - Propriedade
- *  - Estado
+ *  - Estado e Imutabilidade
  * 
  * * Propriedade é alguma informação que podemos passar de um componente pai, para um componente filho.
  *    props -> Todas as propriedades que são passadas como parâmetro
  *    children -> Todo o conteúdo que nossa tag recebeu. Toda vez que acessarmos props.children, queremos exibir o conteúdo
  *                que está dentro de nosso componente.
+ * 
+ * Para percorrermos um elemento no React utilizaremos a função map do Javascript.
  */
 
 import React from 'react';

@@ -1,12 +1,18 @@
 const express = require('express');
 const {uuid, isUuid} = require('uuidv4'); //Responsável por criar um id único universal.
 const app = express();
+const cors = require('cors');
 
 /**
  * O 'use' é quando queremos adicionar uma função em que todas as rotas deverão
  * passar por ela. Essa configuração precisa vir antes das rotas.
+ * 
+ * Precisamos ajustar o CORS para garantir que o front end que se conectará com
+ * nosso back-end é nosso mesmo. Assim não permitimos que qualquer front se conecte.
+ * A utilização do módulo do cors é justamente para isso. Podemos passar como 
+ * parametro a origin do nosso frontend.
  */
-
+app.use(cors());
 app.use(express.json());
 /**
  * Métodos HTTP:

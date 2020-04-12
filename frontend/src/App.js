@@ -33,9 +33,18 @@ function App(){
     })
   }, []);
 
-  function handleAddProject(){
-    setProjects([...projects, `Novo Projeto ${Date.now()}`]);
-    console.log(projects);
+  async function handleAddProject(){
+    // setProjects([...projects, `Novo Projeto ${Date.now()}`]);
+    // console.log(projects);
+
+    const response = await api.post('projects', {
+        title:`Novo Projeto ${Date.now()}`,
+        owner:"Thadeu Munhóz Cesário"
+    });
+
+    const project = response.data;
+
+    setProjects([...projects, project]);
   }
 
   return(

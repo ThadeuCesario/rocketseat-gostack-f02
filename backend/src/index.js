@@ -88,7 +88,7 @@ function logRequests(request, response, next){
   const {method, url} = request;
   const logLabel = `[${method.toUpperCase()}] ${url}`;
   // console.log(logLabel);
-  console.log('1');
+  // console.log('1');
   console.time(logLabel);
   /**
    * Precisamos chamar o 'next()', caso contrário o proximo middleware
@@ -96,12 +96,12 @@ function logRequests(request, response, next){
    */ 
   next(); 
 
-  console.log('2');
+  // console.log('2');
   console.timeEnd(logLabel);
 }  
 
 function middlewareTest(request, response, next){
-  console.log('Middleware teste somente para POST');
+  // console.log('Middleware teste somente para POST');
   return next();
 }
 
@@ -121,7 +121,7 @@ app.use(logRequests);
 app.use('/projects/:id', validateProjectId); 
 
 app.get('/projects', (request, response) => {
-  console.log('3');
+  // console.log('3');
    /**
    * Tudo o que está dentro do request.query estão sendo enviados.
    */

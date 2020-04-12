@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
+import './App.css';
+import logoImage from './assets/react-logo.png';
 
 function App(){
   /**
@@ -22,7 +24,7 @@ function App(){
   return(
     <React.Fragment>
        <Header title="Projects"></Header>
-
+        <img width={300} src={logoImage}/>
        <ul>
           {projects.map(project => <li key={project}>{project}</li>)}
        </ul>

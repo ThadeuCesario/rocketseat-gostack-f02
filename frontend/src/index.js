@@ -28,6 +28,12 @@
  *                que está dentro de nosso componente.
  * 
  * Para percorrermos um elemento no React utilizaremos a função map do Javascript.
+ * 
+ * Porque temos dois loaders para css (style-loader e css-loader)? 
+ * O CSS-LOADER será responsável por ler nossos arquivos css e também por interpretar as importações que temos. Como background: url()... 
+ * O STYLE-LOADER será responsável por pegar o arquivo interpretado pelo CSS-LOADER e irá injetar dentro do nosso HTML.
+ * 
+ * Instalamos também o file-loader (yarn add file-loader), esse será responsável por carregar arquivos dentro da nossa aplicação.
  */
 
 import React from 'react';

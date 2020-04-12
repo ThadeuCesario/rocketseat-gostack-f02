@@ -19,12 +19,17 @@ function App(){
    *   O useEffect recebe dois parâmetros, o primeiro parâmetro é qual função que eu quero disparar
    *   o segundo parâmetro, é quando que eu desejo disparar essa função. Se quiseremos que a função
    *   seja executada somente quando o elemento for exibido em tela. Basta colocar um array vazio [].
+   * 
+   *   Toda vez que inicializamos um estado, ou seja utilizamos o useState, definindo qual o valor 
+   *   inicial do estado. É ideal colocar um valor inicial que vai seguir o mesmo tipo de variável
+   *   que o estado terá futuramente. Por exemplo, meu projects sempre será um array, por isso
+   *   iniciei o estado com um array vazio.
    */
-  const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web']);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     api.get('projects').then(response => {
-      console.log(response);
+      setProjects(response.data);
     })
   }, []);
 
@@ -38,7 +43,7 @@ function App(){
        <Header title="Projects"></Header>
         {/* <img width={300} src={logoImage}/> */}
        <ul>
-          {projects.map(project => <li key={project}>{project}</li>)}
+          {projects.map(project => <li key={project.id}>{project.title}</li>)}
        </ul>
 
        <button type="button" onClick={() => handleAddProject()}>Adicionar Projeto</button>

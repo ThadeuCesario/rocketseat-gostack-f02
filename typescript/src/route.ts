@@ -14,7 +14,9 @@
  */
 
 import {Request, Response} from 'express';
+import createUser from './services/CreateUser';
 
 export function callRoute(request: Request, response: Response){
+  const user = createUser('Teste', 'teste@teste.com.br', '123456789');
   return response.json({message: 'Hello World'})
 }

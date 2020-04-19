@@ -19,13 +19,21 @@
  * 
  * Veja que defini o nome como não sendo obrigatório, utilizando o '?:'   
  * nome?: string;
+ * 
+ * Veja também que estou trabalhando com array no campo de 'techs', para trabalhar
+ * com Arrays, basta chamar 'Array' e dentro das tags '<>' utilizar a tipagem.
+ * Por exemplo nesse caso, são strings. Portanto: 
+ * Array<string>
  */
 
 interface CreateUserData {
-  nome?: string;
+  name?: string;
+  email: string;
+  password: string;
+  techs: Array<string>
 }
 
-export default function createUser(name = "", email: String, password: String){
+export default function createUser({name = '', email, password}:CreateUserData){
   const user = {
     name,
     email,

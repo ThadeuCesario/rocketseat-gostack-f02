@@ -11,12 +11,21 @@
  * dentro de nossa função. 
  * Agora depois que realizamos a tipagem, podemos testar nosso json e estara com as sugestões
  * de função.
+ * 
+ * O TypeScript nos auxilia na tipagem tanto de elementos 'String', 'Number', 'Boolean'
+ * 'Object', 'Array'
+ * 
+ * Interface -> Formas de definir tipagens de conjuntos de dados. Principalmente objetos no
+ * Javascript.
  */
 
 import {Request, Response} from 'express';
 import createUser from './services/CreateUser';
 
 export function callRoute(request: Request, response: Response){
-  const user = createUser('Teste', 'teste@teste.com.br', '123456789');
+  const user = createUser({
+    email: 'teste@teste.com.br',
+    password: '123456'
+  });
   return response.json({message: 'Hello World'})
 }

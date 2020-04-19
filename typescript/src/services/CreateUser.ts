@@ -24,20 +24,32 @@
  * com Arrays, basta chamar 'Array' e dentro das tags '<>' utilizar a tipagem.
  * Por exemplo nesse caso, são strings. Portanto: 
  * Array<string>
+ * 
+ * Adicionei agora 
+ * 
+ * Array<string | CreateUserData>
+ * Estou declarando que nosso array pode ser tanto um string pura, quanto um
+ * objeto seguindo aquela interface.
  */
+
+interface techsObject{
+  title: string;
+  experience: number;
+}
 
 interface CreateUserData {
   name?: string;
   email: string;
   password: string;
-  techs: Array<string>
+  techs: Array<string | techsObject>;
 }
 
-export default function createUser({name = '', email, password}:CreateUserData){
+export default function createUser({name = '', email, password, techs}:CreateUserData){
   const user = {
     name,
     email,
-    password
+    password,
+    techs
   }
 
   return user;

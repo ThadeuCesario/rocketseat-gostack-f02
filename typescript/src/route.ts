@@ -25,7 +25,18 @@ import createUser from './services/CreateUser';
 export function callRoute(request: Request, response: Response){
   const user = createUser({
     email: 'teste@teste.com.br',
-    password: '123456'
+    password: '123456',
+    techs: ['Javascript',
+    'TypeScript',
+    'NodeJS',
+    'Jquery',
+    'ReactNative',
+    'React',
+    'KnockoutJS',
+    {
+      title: 'SvelteJS',
+      experience: 20
+    }]
   });
   return response.json({message: 'Hello World'})
 }
